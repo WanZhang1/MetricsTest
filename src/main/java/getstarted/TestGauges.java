@@ -11,14 +11,16 @@ import com.yammer.metrics.reporting.ConsoleReporter;
 
 
 /**
- * Created by Administrator on 2017/9/4.
+ * Created by zhangw on 2017/9/4.
+ * Gauges度量
  */
 public class TestGauges {
+    //定义队列
     public static Queue<String> queue = new LinkedList<String>();
 
     public static void main(String[] args) throws InterruptedException{
-        ConsoleReporter.enable(5,TimeUnit.SECONDS);
-
+        ConsoleReporter.enable(5,TimeUnit.SECONDS);//每5秒控制台打印一次
+        //定义Gauges
         Gauge<Integer> g = Metrics.newGauge(TestGauges.class, "pending-jobs", new Gauge<Integer>(){
             @Override
             public Integer value(){

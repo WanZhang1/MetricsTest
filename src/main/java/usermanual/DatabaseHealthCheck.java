@@ -2,17 +2,16 @@ package usermanual;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import com.yammer.metrics.HealthChecks;
 import com.yammer.metrics.core.HealthCheck;
-import com.yammer.metrics.reporting.ConsoleReporter;
+
 /**
- * Created by Administrator on 2017/9/4.
+ * Created by zhangw on 2017/9/4.
+ * HealthCheck测试
  */
 public class DatabaseHealthCheck extends HealthCheck {
     private static Database database;
-    private static final Map<String, Result> results = HealthChecks.runHealthChecks();
 
     public DatabaseHealthCheck(Database database) {
         super("database");
@@ -21,7 +20,6 @@ public class DatabaseHealthCheck extends HealthCheck {
 
     @Override
     public Result check()throws Exception {
-
         if(database.isConnected()) {
             return Result.healthy();
         } else {
@@ -47,11 +45,18 @@ public class DatabaseHealthCheck extends HealthCheck {
         }
     }
 }
+
+/**
+ * 数据库类
+ */
 class Database{
     static Random rn = new Random();
 
+    /**
+     * 生成随机状态
+     * @return
+     */
     public boolean isConnected() {
-        // TODOAuto-generated method stub
         return rn.nextBoolean();
     }
 
